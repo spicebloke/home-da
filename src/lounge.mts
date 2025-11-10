@@ -13,12 +13,15 @@ export function Lounge({
 }: TServiceParams) {
 
   const homeZone = hass.refBy.id("input_button.tester");
+  const officeWled = hass.refBy.id("light.tz3000_dbou1ap4_ts0505a");
 
   //toggleIcons(ledAutomation, "mdi:led-strip-variant", "mdi:led-strip-variant-off");
 
   
   homeZone.onUpdate(({ state }) => {
        logger.info("pressed!");
+       
+       officeWled.toggle();
     
   });
 
