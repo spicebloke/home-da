@@ -1,6 +1,6 @@
 import { CronExpression, TServiceParams } from "@digital-alchemy/core";
 import dayjs from "dayjs";
-import { toggleIcons } from "./utils.mts";
+import { toggleIcons , writeFile } from "./utils.mts";
 
 export function Lounge({
   automation,
@@ -21,7 +21,9 @@ export function Lounge({
   homeZone.onUpdate(({ state }) => {
        logger.info("pressed!");
        
-       officeWled.toggle();
+       //officeWled.toggle();
+       
+       writeFile("clive.txt",state);
     
   });
 

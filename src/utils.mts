@@ -6,6 +6,8 @@ import isBetween from "dayjs/plugin/isBetween";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import weekOfYear from "dayjs/plugin/weekOfYear";
+import * as fs from 'fs';
+
 
 dayjs.extend(advancedFormat);
 dayjs.extend(dayOfYear);
@@ -34,3 +36,19 @@ export function toggleIcons(entity, on: string, off: string) {
 export function turnedOn(newState: string, oldState: string): boolean {
   return newState === "on" && oldState === "off"
 }
+
+
+export function writeFile(data: string, filename: string) {
+
+
+ fs.writeFile(filename, data, 'utf8', (err) => {
+    if (err) {
+        console.error('Error writing to file:', err);
+    } else {
+        console.log('File written successfully');
+    }
+ });
+
+}
+ 
+
