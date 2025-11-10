@@ -14,6 +14,8 @@ export function Lounge({
 
   const homeZone = hass.refBy.id("input_button.tester");
   const officeWled = hass.refBy.id("light.tz3000_dbou1ap4_ts0505a");
+  const motion = hass.refBy.id("binary_sensor.tuyatec_zn9wyqtr_rh3040");
+  
 
   //toggleIcons(ledAutomation, "mdi:led-strip-variant", "mdi:led-strip-variant-off");
 
@@ -23,11 +25,15 @@ export function Lounge({
        
        //officeWled.toggle();
        
-       writeFile("clive.txt",state);
+       //writeFile("clive.txt",state);
     
   });
 
+  motion.onUpdate(({ state }) => {
   
+  logger.info(state);
+  
+  });
   
   
 
