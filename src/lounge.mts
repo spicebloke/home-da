@@ -19,7 +19,7 @@ export function Lounge({
   
   homeZone.onUpdate(({ state }) => {
        logger.info("pressed!");
-    }
+    
   });
 
   
