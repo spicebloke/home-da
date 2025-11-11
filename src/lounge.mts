@@ -21,7 +21,7 @@ export function Lounge({
 
   
   homeZone.onUpdate(({ state }) => {
-       logger.info("pressed!");
+       logger.info("pressed! new version");
        
        //officeWled.toggle();
        
@@ -39,6 +39,8 @@ export function Lounge({
 
   // Slightly more resillient state syncs at boot
   lifecycle.onReady(() => {
+
+logger.info("ready");
     //const holidayLights = hass.refBy.label("holiday_lights");
     //if (holidayLights.some(light => light.state === "on")) {
       //holidayLightSwitch.is_on = true;
