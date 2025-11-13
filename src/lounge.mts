@@ -26,6 +26,11 @@ export function Lounge({
        //officeWled.toggle();
        
        //writeFile("clive.txt",state);
+
+			let ent = hass.refBy.id("sensor.elec_power_chauffe_eau");
+let oldstate= hass.states.get(ent);
+logger.info(oldstate);
+
     
   });
 
@@ -40,7 +45,7 @@ export function Lounge({
   // Slightly more resillient state syncs at boot
   lifecycle.onReady(() => {
 
-logger.info("ready");
+logger.info("ready 2");
     //const holidayLights = hass.refBy.label("holiday_lights");
     //if (holidayLights.some(light => light.state === "on")) {
       //holidayLightSwitch.is_on = true;
