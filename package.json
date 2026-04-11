@@ -22,7 +22,7 @@
     "@digital-alchemy/fastify-extension": "^25.3.3",
     "@digital-alchemy/hass": "^25.7.1",
     "@digital-alchemy/mqtt-extension": "^25.1.1",
-    "@digital-alchemy/synapse": "^25.3.1",
+    "@digital-alchemy/synapse": "^25.12.19",
     "@types/bun": "^1.2.22",
     "better-sqlite3": "^12.2.0",
     "dayjs": "^1.11.13",
@@ -31,7 +31,8 @@
     "node-cron": "^4.2.1",
     "tsc": "^2.0.4",
     "uuid": "^11.1.0",
-    "xstate": "^5.20.1"
+    "xstate": "^5.20.1",
+    "@actual-app/api": "^26.1.0"
   },
   "devDependencies": {
     "@digital-alchemy/type-writer": "^25.7.26",

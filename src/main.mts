@@ -6,7 +6,11 @@ import { LIB_HASS } from "@digital-alchemy/hass";
 import { LIB_SYNAPSE } from "@digital-alchemy/synapse";
 
 import { Lounge } from "./lounge.mts";
+import { Bedroom } from "./bedroom.mts";
 
+import { Bathroom } from "./bathroom.mts";
+import { Wongr } from "./wongr.mts";
+import { Energy } from "./energy.mts";
 
 type Environments = "development" | "production" | "test";
 
@@ -32,7 +36,7 @@ const HOME_AUTOMATION = CreateApplication({
   // - LIB_FASTIFY - http bindings
   libraries: [LIB_HASS, LIB_SYNAPSE, LIB_AUTOMATION],
 
-  name: "home_automation",
+  name: "clive_home_automation",
 
   // use this list to force certain services to load first
   priorityInit: [],
@@ -42,7 +46,11 @@ const HOME_AUTOMATION = CreateApplication({
   //
   // https://docs.digital-alchemy.app/docs/core/wiring
   services: {
-    Lounge
+    Lounge,
+	  Bedroom,
+    Bathroom,
+    Wongr,
+    Energy
   },
 });
 

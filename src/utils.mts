@@ -1,3 +1,5 @@
+import { sleep } from "@digital-alchemy/core";
+
 import dayjs from "dayjs";
 
 import advancedFormat from "dayjs/plugin/advancedFormat";
@@ -21,6 +23,62 @@ export function toggleIcons(entity, on: string, off: string) {
     entity.icon = entity.is_on ? on : off;
   });
 }
+
+export function isRealEvent(newState, oldState) {
+  return !(["unavailable", "unknown"].includes(newState) || oldState === "unavailable")
+}
+
+
+export function createDelayer(entityName) {
+  let timer: SleepReturn | undefined;
+  
+  return async function runAfterDelay(seconds: number, entity) {
+		console.log('runafterdelay start ' + entityName)
+		entity.turn_on();
+
+
+    if (timer) {
+      timer.kill();
+    }
+    
+    timer = sleep( seconds * 1000 );
+    await timer;
+
+    //await action();
+		entity.turn_off();
+	
+		console.log('runafterdelay action ' + entityName);
+
+    timer = undefined;
+  };
+}
+
+
+
+
+
+export async function onWaitOff(entity, howlong, desc) {
+
+	let timer: SleepReturn;
+
+	console.log('onwaitoff ' + desc);
+
+  // some logic
+	entity.turn_on();
+
+
+  timer?.kill("stop"); // stop previous
+  timer = sleep(howlong * 1000); // create new
+  await timer;
+	
+  //logger.info("timer was not cancelled after 24h");
+	console.log('onwaitoff done ' + desc);
+	
+	entity.turn_off();
+
+  timer = undefined;
+}
+
 
 /**
  * Determines if an entity has just been turned on.
