@@ -199,7 +199,9 @@ clive2energy.reset();
   
   lifecycle.onReady(() => {
 
-		logger.info("energy ready 2.8");
+		logger.info("energy ready 2.9");
+		
+		hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Energy reloaded"});
 
 todayCostSolar1.state = 0
 todayCostSolar2.state = 0
