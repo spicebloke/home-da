@@ -108,7 +108,7 @@ clive2energy.update(0);
 
 
 solar1power.onUpdate(({ state }) => {
-  logger.info(state);
+  //logger.info(state);
   solarNet.state = toFloat(solar1power.state) + toFloat(solar2power.state)
 
 clive1.state = clive1energy.update(solar1power.state); 
@@ -116,7 +116,7 @@ clive1.state = clive1energy.update(solar1power.state);
 
 });
 solar2power.onUpdate(({ state }) => {
-  logger.info(state);
+  //logger.info(state);
   solarNet.state = toFloat(solar1power.state) + toFloat(solar2power.state)
 clive2.state = clive2energy.update(solar2power.state); 
 
@@ -125,7 +125,7 @@ clive2.state = clive2energy.update(solar2power.state);
 
 
 meterReading.onUpdate(({ state, attributes: { event_type } }, { state: oldState }) => {
-  logger.info(state);
+  //logger.info(state);
   if (!isRealEvent(state, oldState)) return;
 
   todayCost.state = todayCost.state + ((state - oldState) * elecTariff.state);

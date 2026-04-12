@@ -4,8 +4,6 @@ import { CronExpression, TServiceParams } from "@digital-alchemy/core";
 import { Time } from "@digital-alchemy/automation";
 import duration from "dayjs/plugin/duration";
 
-let api = require('@actual-app/api'); 
-
 
 dayjs.extend(duration);
 
@@ -20,8 +18,7 @@ export function Bedroom({
 }: TServiceParams) {
 
 
-  const bathroomLight = hass.refBy.id("light.sonoff_01minizb");
-  const bathroomMotion = hass.refBy.id("binary_sensor.bath_motion");
+    const bathroomLight = hass.refBy.id("light.sonoff_01minizb");
   const bedroomButton = hass.refBy.id("button.ewelink_wb01_identify2");
   const bedroomLight = hass.refBy.id("light.signify_netherlands_b_v_lwa028");
 
@@ -29,7 +26,7 @@ export function Bedroom({
 
 
 const meterReading = hass.refBy.id("sensor.elec_power_main");
-const hotWater = hass.refBy.id("sensor.chauffeur_eau_power");
+
 
 const meterSolar1 = hass.refBy.id("sensor.elec_power_solar1");
 const meterSolar2 = hass.refBy.id("sensor.elec_power_solar2");
@@ -37,7 +34,7 @@ const meterSolar2 = hass.refBy.id("sensor.elec_power_solar2");
 const elecCost = hass.refBy.id("sensor.electricity_import_daily_cost");
 
 let allowNotify = true
-let allowNotifyWater = true
+
 
 
 const meterDesc = synapse.text({
@@ -110,14 +107,6 @@ meterReading.onUpdate(({ state }) => {
 
 });
 
-hotWater.onUpdate(({ state }) => {
-
-  if ( state < 300 && allowNotifyWater ) {
-    hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Hot water ready"});
-    allowNotifyWater = false;
-  }
-
-});
 
 
 
@@ -205,32 +194,11 @@ exec(cmd, (err, stdout, stderr) => {
 
 
 
-async function dooit() { 
-
-	await api.init({
-    //dataDir: '/root/homeassistant/',
-    serverURL: 'https://actual.spicebloke.uk',
-    password: 'shnarf1',
-  });
-
-  await api.downloadBudget('d3251312-46b2-435d-9a0d-8bdda99c17b0');
-  
-	let budget = await api.getBudgetMonth('2025-01'); 
-	//let budget = await api.runBankSync();
-
-	console.log(JSON.stringify(budget)); 
-  
-	await api.shutdown();
-
-};
-
-
-
 
   
   lifecycle.onReady(() => {
 
-		logger.info("ready 2.5");
+    logger.info("ready 2.5");
   });
 
 

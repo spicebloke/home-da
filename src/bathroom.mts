@@ -21,10 +21,12 @@ export function Bathroom({
   const bathroomLight = hass.refBy.id("light.sonoff_01minizb");
   const bathroomMotion = hass.refBy.id("binary_sensor.bath_motion");
 
+  const hotWater = hass.refBy.id("sensor.chauffeur_eau_power");
+
   const showerSensor = hass.refBy.id("sensor.bathroom_humidity_change");
   const delay2 = createDelayer('bathroom');
 
-
+  let allowNotifyWater = true
 
 const temperature = synapse.sensor({
   context,
@@ -60,6 +62,16 @@ const temperature = synapse.sensor({
   showerSensor.onUpdate(({ state }) => {
 
     logger.info(`bathroom current state is ${state}`);
+
+  });
+
+
+  hotWater.onUpdate(({ state }) => {
+
+    if ( state < 300 && allowNotifyWater ) {
+      hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Hot water ready"});
+      allowNotifyWater = false;
+    }
 
   });
 
