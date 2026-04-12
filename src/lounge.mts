@@ -196,36 +196,6 @@ scheduler.cron({
 
 
 
-scheduler.cron({
-  schedule: "43 21 * * *",
-  exec() {
-     
-    hass.call.music_assistant.play_media( { "media_id": "Virgin Radio" , "enqueue": "replace" , "media_type": "radio" , "entity_id": "media_player.den_2" });
-
-    hass.call.media_player.volume_set( { "volume_level": "0.02" , "entity_id": "media_player.den_2" });
-
-let value = 0.01;
-const target = 0.10;
-const increment = 0.05;
-const intervalMs = 1 * 60 * 1000; // 2 minutes in milliseconds
-
-const interval = setInterval(() => {
-  value += increment;
-  logger.info(`Value: ${value}`);
-  hass.call.media_player.volume_set( { "volume_level": value, "entity_id": "media_player.den_2" });
-
-  if (value >= target) {
-    logger.info("Target reached, stopping.");
-    clearInterval(interval);
-  }
-}, intervalMs);
-
-logger.info(`Starting at ${value}, incrementing by ${increment} every 2 minutes until ${target}.`);
-
-
-  }
-
-});
 
 
 
