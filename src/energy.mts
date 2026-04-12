@@ -178,55 +178,60 @@ solar2.onUpdate(({ state, attributes: { event_type } }, { state: oldState }) => 
 });
 
 
-scheduler.cron({
-  schedule: "0 0 * * *",
-  exec() {
-     //prvCost = 0
-     //prvCostWater = 0
-todayCost.state = 0
-todayCostWater.state = 0
-todayCostSolar1.state = 0
-todayCostSolar2.state = 0
-clive1energy.reset();
-clive2energy.reset();
+  scheduler.cron({
+    schedule: "0 0 * * *",
+    exec() {
 
-     
-  }
-});
+      todayCost.state = 0
+      todayCostWater.state = 0
+      todayCostSolar1.state = 0
+      todayCostSolar2.state = 0
+      clive1energy.reset();
+      clive2energy.reset();
 
+    }
+  });
+
+
+
+  const mySwitch = hass.refBy.id("input_boolean.elec_peak_hours");
+
+  scheduler.cron({
+    schedule: "40 12 * * *",
+    exec: () => mySwitch.turn_off()
+  });
+  scheduler.cron({
+    schedule: "40 13 * * *",
+    exec: () => mySwitch.turn_on()
+  });
+  scheduler.cron({
+    schedule: "10 00 * * *",
+    exec: () => mySwitch.turn_off()
+  });
+  scheduler.cron({
+    schedule: "10 07 * * *",
+    exec: () => mySwitch.turn_on()
+  });
 
 
   
   lifecycle.onReady(() => {
 
-		logger.info("energy ready 2.9");
+    logger.info("energy ready 2.9");
 		
-		hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Energy reloaded"});
+    hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Energy reloaded"});
 
-todayCostSolar1.state = 0
-todayCostSolar2.state = 0
+    todayCostSolar1.state = 0
+    todayCostSolar2.state = 0
 
-
-
-//prvCost = toFloat(todayCost.state)
-//logger.info(`prvCost: ${prvCost}`);
-
-
-
-    
   });
 
 
-const toFloat = (value: unknown): number => {
-  if (value == null) return 0;
-  const n = parseFloat(String(value));
-  return isNaN(n) ? 0 : n;
-};
-
-
-
-
-
+  const toFloat = (value: unknown): number => {
+    if (value == null) return 0;
+    const n = parseFloat(String(value));
+    return isNaN(n) ? 0 : n;
+  };
 
 
 }

@@ -26,7 +26,7 @@ export function Bedroom({
   const bedroomLight = hass.refBy.id("light.signify_netherlands_b_v_lwa028");
 
 	const delay1 = createDelayer('bedroom');
-	const delay2 = createDelayer('bathroom');
+
 
 const meterReading = hass.refBy.id("sensor.elec_power_main");
 const hotWater = hass.refBy.id("sensor.chauffeur_eau_power");
@@ -120,30 +120,7 @@ hotWater.onUpdate(({ state }) => {
 });
 
 
-bathroomLight.onUpdate(({ state }) => {
 
-
-   //hass.call.notify.mobile_app_spicephone( { "title":"The title" , "message": "the messge"});
-
-});
-
-bathroomMotion.onUpdate(({ state }) => {
-
-		logger.info(`current state is ${state}`);
-
-		if (state === 'on') {
-			//myLogic(70);
-				//onWaitOff(spareLight, 70, 'spare')
-			rundelay();		
-		}
-
-
-  });
-
-async function rundelay() {
-	await delay2(900, bathroomLight);		
-
-}
 
 bedroomLight.onUpdate((new_state, old_state) => {
 
@@ -268,6 +245,8 @@ scheduler.cron({
 
     hass.call.media_player.volume_set( { "volume_level": "0.01" , "entity_id": "media_player.den_2" });
     
+    let milli = dayjs.duration(2, 'minutes').asMilliseconds();
+           
     const playit = incrementOverTime({
     startValue: 0.01,
     endValue: 0.10,

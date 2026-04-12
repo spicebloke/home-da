@@ -22,7 +22,7 @@ export function Bathroom({
   const bathroomMotion = hass.refBy.id("binary_sensor.bath_motion");
 
   const showerSensor = hass.refBy.id("sensor.bathroom_humidity_change");
-
+  const delay2 = createDelayer('bathroom');
 
 
 
@@ -35,17 +35,33 @@ const temperature = synapse.sensor({
 });
 
 
+  bathroomLight.onUpdate(({ state }) => {
+    //hass.call.notify.mobile_app_spicephone( { "title":"The title" , "message": "the messge"});
+
+  });
+
+  bathroomMotion.onUpdate(async ({ state }) => {
+
+	logger.info(`current state is ${state}`);
+
+	if (state === 'on') {
+	  await delay2(900, bathroomLight);		
+	}
+
+  });
+
+/*
+  async function rundelay() {
+	await delay2(900, bathroomLight);		
+  }
+*/
 
 
+  showerSensor.onUpdate(({ state }) => {
 
-showerSensor.onUpdate(({ state }) => {
+    logger.info(`bathroom current state is ${state}`);
 
-logger.info(`bathroom current state is ${state}`);
-    //logger.info(`bathroom prev state is ${old_state.state}`);
-
-    //hass.call.notify.mobile_app_spicepad( { "title":"Home" , "message": "Shower"});
-
-});
+  });
 
 
   
@@ -55,13 +71,13 @@ logger.info(`bathroom current state is ${state}`);
 		
 		
 		const cancel = incrementOverTime({
-  startValue: 0,
-  endValue: 100,
-  step: 10,
-  totalTimeMs: 2000,
-  onStep: (value) => logger.info(`Current value: ${value}`),
-  onComplete: () => logger.info("Done!"),
-});
+        startValue: 0,
+        endValue: 100,
+        step: 10,
+        totalTimeMs: 2000,
+        onStep: (value) => logger.info(`Current value: ${value}`),
+        onComplete: () => logger.info("Done!"),
+      });
 
 
   });
