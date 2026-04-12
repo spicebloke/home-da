@@ -110,3 +110,56 @@ export function writeFile(data: string, filename: string) {
 }
  
 
+
+
+
+type StepCallback<T extends number> = (currentValue: T) => void;
+
+interface IncrementOptions<T extends number> {
+  startValue: T;
+  endValue: T;
+  step: T;
+  totalTimeMs: number;
+  onStep: StepCallback<T>;
+  onComplete?: () => void;
+}
+
+export function incrementOverTime<T extends number>({
+  startValue,
+  endValue,
+  step,
+  totalTimeMs,
+  onStep,
+  onComplete,
+}: IncrementOptions<T>): () => void {
+  const direction = endValue > startValue ? 1 : -1;
+  const absoluteStep = Math.abs(step) * direction;
+  const totalSteps = Math.ceil(Math.abs(endValue - startValue) / Math.abs(step));
+  const intervalMs = totalTimeMs / totalSteps;
+
+  let currentValue = startValue;
+
+  const interval = setInterval(() => {
+    onStep(currentValue as T);
+
+    const nextValue = currentValue + absoluteStep;
+    const isDone =
+      direction > 0 ? nextValue > endValue : nextValue < endValue;
+
+    if (isDone) {
+      clearInterval(interval);
+      onComplete?.();
+    } else {
+      currentValue = nextValue as T;
+    }
+  }, intervalMs);
+
+  // Return a cancel function
+  return () => clearInterval(interval);
+}
+
+
+
+
+
+

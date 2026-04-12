@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { toggleIcons , writeFile, createDelayer, turnedOn } from "./utils.mts";
+import { toggleIcons , writeFile, createDelayer, turnedOn, incrementOverTime } from "./utils.mts";
 import { CronExpression, TServiceParams } from "@digital-alchemy/core";
 import { Time } from "@digital-alchemy/automation";
 import duration from "dayjs/plugin/duration";
@@ -52,6 +52,18 @@ logger.info(`bathroom current state is ${state}`);
   lifecycle.onReady(() => {
 
 		logger.info("bathroom ready 2.5");
+		
+		
+		const cancel = incrementOverTime({
+  startValue: 0,
+  endValue: 100,
+  step: 10,
+  totalTimeMs: 2000,
+  onStep: (value) => logger.info(`Current value: ${value}`),
+  onComplete: () => logger.info("Done!"),
+});
+
+
   });
 
 
