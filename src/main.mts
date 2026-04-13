@@ -7,7 +7,7 @@ import { LIB_SYNAPSE } from "@digital-alchemy/synapse";
 
 import { Lounge } from "./lounge.mts";
 import { Bedroom } from "./bedroom.mts";
-
+import { Jardin } from "./jardin.mts";
 import { Bathroom } from "./bathroom.mts";
 import { Wongr } from "./wongr.mts";
 import { Energy } from "./energy.mts";
@@ -50,7 +50,8 @@ const HOME_AUTOMATION = CreateApplication({
 	  Bedroom,
     Bathroom,
     Wongr,
-    Energy
+    Energy,
+    Jardin
   },
 });
 

@@ -52,12 +52,6 @@ const temperature = synapse.sensor({
 
   });
 
-/*
-  async function rundelay() {
-	await delay2(900, bathroomLight);		
-  }
-*/
-
 
   showerSensor.onUpdate(({ state }) => {
 

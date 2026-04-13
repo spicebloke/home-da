@@ -24,30 +24,8 @@ export function Lounge({
   const delay1 = createDelayer('spare');
   const lamp = hass.refBy.id("light.signify_netherlands_b_v_lwa028");
 
-  const stringLights = hass.refBy.id("light.string_lights");
-  const stringLightsScene = hass.refBy.id("select.string_lights_scene");
   const tv = hass.refBy.id("media_player.tv_2");
 
-
-
-
-const newswitch = synapse.switch({
-  context,
-  unique_id: "clive_test_light_synapse",
-  name: "Clive Test Light",
-  device_class: "outlet",
-  is_on: false,
-  managed: true
-});
-
-const newswitch2 = synapse.number({
-  context,
-  unique_id: "clive_test_number_synapse2",
-  name: "Clive Test number 2",
-  native_min_value: 0,
-  native_max_value: 1000000,
-  mode: "box"
-});
 
 
 const restartSmartDnsButton = synapse.button({
@@ -89,29 +67,7 @@ exec(cmd, (err, stdout, stderr) => {
   };
 
 
-  const garageDoor = hass.refBy.id("switch.garage_door_lock");
-
-  const garageLock = synapse.lock({
-    context,
-    name: "Garage Door Lock"
-  });
-
-  garageLock.onUpdate(({ state }) => {
-
-    updateWaterCosts()
   
-    logger.info(state);
-
-    if (state == 'locked') {
-      garageDoor.turn_on();
-    }
-    if (state == 'unlocked') {
-      garageDoor.turn_off();
-    }
-
-  });
-
-
 
   lamp.onUpdate(({ state }) => {
   
@@ -119,7 +75,6 @@ exec(cmd, (err, stdout, stderr) => {
 
     //hass.call.tts.speak( { "entity_id": "tts.piper", "cache": true, "media_player_entity_id": "media_player.kitchen", "message": "Commencing scan", "language": "en_GB"});
 
-  
   });
   
 
@@ -130,36 +85,13 @@ exec(cmd, (err, stdout, stderr) => {
   });
 
 
+  spareMotion.onUpdate(async ({ state }) => {
 
+	if (state === 'on') {
 
-	spareMotion.onUpdate(({ state }) => {
+      await delay1(300, spareLight);		 
+	}
 
-		if (state === 'on') {
-			//myLogic(70);
-				//onWaitOff(spareLight, 70, 'spare')
-			rundelay();		
-		}
-
-
-  });
-
-
-async function rundelay() {
-	await delay1(300, spareLight);		
-
-}
-	
-
-
-
-  automation.solar.onEvent({
-    eventName: "dusk",
-    exec() {
-
-      stringLights.turn_on();
-      stringLightsScene.select_option({ option: "Spring" });
-
-    }
   });
 
 
