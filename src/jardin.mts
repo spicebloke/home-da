@@ -61,7 +61,7 @@ export function Jardin({
   lifecycle.onReady(() => {
 
     logger.info("jardin ready 3.1");
-    logger.info("process.env.CLIVE");
+    logger.info(process.env.CLIVE);
 
   });
 
