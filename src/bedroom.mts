@@ -152,12 +152,12 @@ const solarPct = synapse.sensor({
       let milli = dayjs.duration(2, 'minutes').asMilliseconds();
              
       const playit = incrementOverTime({
-      startValue: 0.01,
-      endValue: 0.10,
-      step: 0.05,
-      totalTimeMs: 5 * 60 * 1000,
-      onStep: (value) => hass.call.media_player.volume_set( { "volume_level": value, "entity_id": "media_player.den_2" }),
-      onComplete: () => logger.info("Done!"),
+        startValue: 0.01,
+        endValue: 0.10,
+        step: 0.05,
+        totalTimeMs: 5 * 60 * 1000,
+        onStep: (value) => hass.call.media_player.volume_set( { "volume_level": value, "entity_id": "media_player.den_2" }),
+        onComplete: () => logger.info("Done!"),
       });
 
     }

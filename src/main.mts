@@ -11,6 +11,7 @@ import { Jardin } from "./jardin.mts";
 import { Bathroom } from "./bathroom.mts";
 import { Wongr } from "./wongr.mts";
 import { Energy } from "./energy.mts";
+import { Xanadu } from "./xanadu.mts";
 
 type Environments = "development" | "production" | "test";
 
@@ -47,11 +48,12 @@ const HOME_AUTOMATION = CreateApplication({
   // https://docs.digital-alchemy.app/docs/core/wiring
   services: {
     Lounge,
-	  Bedroom,
+    Bedroom,
     Bathroom,
     Wongr,
     Energy,
-    Jardin
+    Jardin,
+    Xanadu
   },
 });
 
