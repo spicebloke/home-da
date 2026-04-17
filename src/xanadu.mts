@@ -20,7 +20,7 @@ export function Xanadu({
   
   scheduler.cron({
     schedule: CronExpression.EVERY_5_MINUTES,
-    exec () {
+    async exec () {
     
       const res = await fetch(`https://hc-ping.com/bcb15f5d-896c-4403-b42d-697ec022ec3b`);
     
