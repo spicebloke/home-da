@@ -19,6 +19,14 @@ export function Xanadu({
 }: TServiceParams) {
 
 
+const gasLecGazole = synapse.sensor({
+  context,
+  name: "Petrol Pineuilh Gazole"
+});
+
+
+
+
 
 interface FuelPrice {
   description: string;
@@ -47,6 +55,15 @@ function scrapeGasStations(html: string): GasStation[] {
   });
 }
 
+function findByProperty<T, K extends keyof T>(
+  arr: T[],
+  key: K,
+  value: T[K]
+): T | undefined {
+  return arr.find(item => item[key] === value);
+}
+
+
 
 
   
@@ -55,21 +72,24 @@ function scrapeGasStations(html: string): GasStation[] {
     async exec () {
     
       const res = await fetch(`https://hc-ping.com/bcb15f5d-896c-4403-b42d-697ec022ec3b`);
-    
-    
-    const res2 = await fetch('http://www.e.leclerc/mag/e-leclerc-grand-pineuilh');
+      
+    }
+  });
+  
 
-const data = await res2.text();
+  scheduler.cron({
+    schedule: CronExpression.EVERY_HOUR,
+    async exec () {
+    
+    
+      const res2 = await fetch('http://www.e.leclerc/mag/e-leclerc-grand-pineuilh');
 
-
-//console.log(data)
-const stations = scrapeGasStations(data);
-logger.info(JSON.stringify(stations, null, 2));
-
-    
-    
-    
-    
+      const data = await res2.text();
+      
+      const stations = scrapeGasStations(data);
+      //logger.info(JSON.stringify(stations, null, 2));
+      gasLecGazole.state = findByProperty( findByProperty(stations, "name", "Station Pineuilh").fuels, "description","B7/Gazole").price;
+  
     }
   });
   
@@ -77,16 +97,6 @@ logger.info(JSON.stringify(stations, null, 2));
 
     logger.info("xanadu ready 3.1");
     logger.info(process.env.CLIVE);
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 
   });
