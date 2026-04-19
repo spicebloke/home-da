@@ -56,16 +56,6 @@ function scrapeGasStations(html: string): GasStation[] {
     
       const res = await fetch(`https://hc-ping.com/bcb15f5d-896c-4403-b42d-697ec022ec3b`);
     
-    }
-  });
-  
-  lifecycle.onReady(() => {
-
-    logger.info("xanadu ready 3.1");
-    logger.info(process.env.CLIVE);
-    
-    
-    
     
     const res = await fetch('http://www.e.leclerc/mag/e-leclerc-grand-pineuilh');
 
@@ -76,6 +66,19 @@ const data = await res.text();
 const stations = scrapeGasStations(data);
 logger.info(JSON.stringify(stations, null, 2));
 
+    
+    
+    
+    
+    }
+  });
+  
+  lifecycle.onReady(() => {
+
+    logger.info("xanadu ready 3.1");
+    logger.info(process.env.CLIVE);
+    
+    
     
     
     
