@@ -25,6 +25,7 @@
     "@digital-alchemy/synapse": "^25.12.19",
     "@types/bun": "^1.2.22",
     "better-sqlite3": "^12.2.0",
+    "node-html-parser": "^7.1.0",
     "dayjs": "^1.11.13",
     "dotenv": "^17.2.1",
     "es-toolkit": "^1.39.8",
