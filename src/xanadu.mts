@@ -57,9 +57,9 @@ function scrapeGasStations(html: string): GasStation[] {
       const res = await fetch(`https://hc-ping.com/bcb15f5d-896c-4403-b42d-697ec022ec3b`);
     
     
-    const res = await fetch('http://www.e.leclerc/mag/e-leclerc-grand-pineuilh');
+    const res2 = await fetch('http://www.e.leclerc/mag/e-leclerc-grand-pineuilh');
 
-const data = await res.text();
+const data = await res2.text();
 
 
 //console.log(data)
