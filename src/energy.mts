@@ -217,7 +217,7 @@ solar2.onUpdate(({ state, attributes: { event_type } }, { state: oldState }) => 
   
   lifecycle.onReady(() => {
 
-    logger.info("energy ready 2.9");
+    logger.info("energy ready 3.0");
 		
     hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Energy reloaded"});
 
