@@ -95,7 +95,7 @@ function findByProperty<T, K extends keyof T>(
   
   lifecycle.onReady(() => {
 
-    logger.info("xanadu ready 3.1");
+    logger.info("xanadu ready 3.101");
     logger.info(process.env.CLIVE);
     
 
