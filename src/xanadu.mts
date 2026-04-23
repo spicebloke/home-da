@@ -24,6 +24,11 @@ const gasLecGazole = synapse.sensor({
   name: "Petrol Pineuilh Gazole"
 });
 
+const gasLecE10 = synapse.sensor({
+  context,
+  device_class: "monetary",
+  name: "Petrol Pineuilh E10"
+});
 
 
 
@@ -89,6 +94,9 @@ function findByProperty<T, K extends keyof T>(
       const stations = scrapeGasStations(data);
       //logger.info(JSON.stringify(stations, null, 2));
       gasLecGazole.state = findByProperty( findByProperty(stations, "name", "Station Pineuilh").fuels, "description","B7/Gazole").price;
+      gasLecE10.state = findByProperty( findByProperty(stations, "name", "Station Pineuilh").fuels, "description","E10/SP95").price;
+  
+
   
     }
   });
