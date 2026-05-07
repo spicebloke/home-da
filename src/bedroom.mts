@@ -166,7 +166,7 @@ const solarPct = synapse.sensor({
 
 
 scheduler.cron({
-    schedule: "31 23 * * *",
+    schedule: "37 23 * * *",
     exec() {
        
       hass.call.music_assistant.play_media( { "media_id": "Radio X" , "enqueue": "replace" , "media_type": "radio" , "entity_id": "media_player.den_2" });
@@ -177,8 +177,8 @@ scheduler.cron({
              
       const playit = incrementOverTime({
         startValue: 0.01,
-        endValue: 0.10,
-        step: 0.05,
+        endValue: 0.15,
+        step: 0.01,
         totalTimeMs: 2 * 60 * 1000,
         onStep: (value) => hass.call.media_player.volume_set( { "volume_level": value, "entity_id": "media_player.den_2" }),
         onComplete: () => logger.info("Done!"),
