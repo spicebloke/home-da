@@ -164,6 +164,31 @@ const solarPct = synapse.sensor({
   });
 
 
+
+scheduler.cron({
+    schedule: "31 23 * * *",
+    exec() {
+       
+      hass.call.music_assistant.play_media( { "media_id": "Radio X" , "enqueue": "replace" , "media_type": "radio" , "entity_id": "media_player.den_2" });
+
+      hass.call.media_player.volume_set( { "volume_level": "0.01" , "entity_id": "media_player.den_2" });
+      
+      let milli = dayjs.duration(2, 'minutes').asMilliseconds();
+             
+      const playit = incrementOverTime({
+        startValue: 0.01,
+        endValue: 0.10,
+        step: 0.05,
+        totalTimeMs: 2 * 60 * 1000,
+        onStep: (value) => hass.call.media_player.volume_set( { "volume_level": value, "entity_id": "media_player.den_2" }),
+        onComplete: () => logger.info("Done!"),
+      });
+
+    }
+  });
+
+
+
   hass.socket.onEvent({
     context,
     event: "state_changed",
