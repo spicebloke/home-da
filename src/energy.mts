@@ -234,5 +234,32 @@ solar2.onUpdate(({ state, attributes: { event_type } }, { state: oldState }) => 
   };
 
 
+
+
+
+
+
+/*
+function registerEnergyTracker(
+  sensor: { onUpdate: (callback: (newState: number, oldState: number) => void) => void },
+  costAccumulator: { state: number },
+  elecTariff: { state: number }
+): void {
+  sensor.onUpdate((newState, oldState) => {
+    logger.info(newState);
+    if (!isRealEvent(newState, oldState)) return;
+
+    costAccumulator.state = costAccumulator.state + ((newState - oldState) * elecTariff.state);
+  });
+}
+
+
+
+
+registerEnergyTracker(solar1, todayCostSolar1, elecTariff);
+
+*/
+
+
 }
 
