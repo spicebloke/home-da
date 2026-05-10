@@ -26,7 +26,7 @@ export function Lounge({
 
   const tv = hass.refBy.id("media_player.tv_2");
 
-
+  var waspaused = false
 
 const restartSmartDnsButton = synapse.button({
   context,
@@ -79,7 +79,17 @@ exec(cmd, (err, stdout, stderr) => {
   
 
   tv.onUpdate(({ state }) => {
-  
+    
+    if (state == 'paused') {
+      lamp.turn_on()
+      waspaused = true
+    }
+
+    if ( state == 'plying' && waspaused) {
+      lamp.turn_off()
+      waspaused = false
+    }
+
     logger.info(state);
 
   });

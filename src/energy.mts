@@ -37,6 +37,22 @@ class EnergyAccumulator {
   }
 };
 
+
+function registerEnergyTracker(
+  sensor: { onUpdate: (callback: (newState: number, oldState: number) => void) => void },
+  costAccumulator: { state: number },
+  elecTariff: { state: number }
+): void {
+  sensor.onUpdate((newState, oldState) => {
+    logger.info(newState);
+    if (!isRealEvent(newState, oldState)) return;
+
+    costAccumulator.state = costAccumulator.state + ((newState - oldState) * elecTariff.state);
+  });
+}
+
+
+
 export function Energy({
   automation,
   context,
@@ -58,6 +74,8 @@ const solar2 = hass.refBy.id("sensor.elec_reading_solar2");
 const solar1power = hass.refBy.id("sensor.elec_power_solar1");
 const solar2power = hass.refBy.id("sensor.elec_power_solar2");
 
+const powerWashers = hass.refBy.id("sensor.elec_power_washers");
+
 /*
 let prvReading = 0
 let prvCost = 0
@@ -72,7 +90,7 @@ const todayCostWater = synapse.sensor({ context, name: "Elec Cost Today Water", 
 
 const todayCostSolar1 = synapse.sensor({ context, name: "Elec Cost Today Solar1", device_class: "monetary", unit_of_measurement: "EUR" });
 const todayCostSolar2 = synapse.sensor({ context, name: "Elec Cost Today Solar2", device_class: "monetary", unit_of_measurement: "EUR" });
-
+const todayCostWashers = synapse.sensor({ context, name: "Elec Cost Today Washers", device_class: "monetary", unit_of_measurement: "EUR" });
 //button.onUpdate(({ state, attributes: { event_type } }, { state: oldState }) => {
 
 
