@@ -24,6 +24,7 @@ export function Lounge({
   const delay1 = createDelayer('spare');
   const lamp = hass.refBy.id("light.signify_netherlands_b_v_lwa028");
   const loungelamp = hass.refBy.id("light.tz3000_dbou1ap4_ts0505a");
+  const stairlamp = hass.refBy.id("light.3_way_socket_switch");
 
   const tv = hass.refBy.id("media_player.tv_2");
 
@@ -83,11 +84,13 @@ exec(cmd, (err, stdout, stderr) => {
     
     if (state == 'paused') {
       loungelamp.turn_on()
+      stairlamp.turn_on()
       waspaused = true
     }
 
-    if ( state == 'plying' && waspaused) {
+    if ( state == 'playing' && waspaused) {
       loungelamp.turn_off()
+      stairlamp.turn_off()
       waspaused = false
     }
 
