@@ -23,6 +23,7 @@ export function Lounge({
   const spareLight = hass.refBy.id("light.shellyplus1_7c87ce58f084");
   const delay1 = createDelayer('spare');
   const lamp = hass.refBy.id("light.signify_netherlands_b_v_lwa028");
+  const loungelamp = hass.refBy.id("light.tz3000_dbou1ap4_ts0505a");
 
   const tv = hass.refBy.id("media_player.tv_2");
 
@@ -81,12 +82,12 @@ exec(cmd, (err, stdout, stderr) => {
   tv.onUpdate(({ state }) => {
     
     if (state == 'paused') {
-      lamp.turn_on()
+      loungelamp.turn_on()
       waspaused = true
     }
 
     if ( state == 'plying' && waspaused) {
-      lamp.turn_off()
+      loungelamp.turn_off()
       waspaused = false
     }
 
