@@ -99,14 +99,14 @@ exec(cmd, (err, stdout, stderr) => {
   tv.onUpdate(({ state }) => {
     
     if (state == 'paused') {
-      loungelamp.turn_on()
-      stairlamp.turn_on()
+      //loungelamp.turn_on()
+      //stairlamp.turn_on()
       waspaused = true
     }
 
     if ( state == 'playing' && waspaused) {
-      loungelamp.turn_off()
-      stairlamp.turn_off()
+      //loungelamp.turn_off()
+      //stairlamp.turn_off()
       waspaused = false
     }
 
