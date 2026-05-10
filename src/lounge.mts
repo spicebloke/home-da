@@ -30,6 +30,18 @@ export function Lounge({
 
   var waspaused = false
 
+
+
+const movieMode = synapse.scene({
+  context,
+  name: "Movie Mode",
+  activate() {
+    logger.info("Activating movie mode...");
+    // Dim lights, close blinds, start projector, etc.
+  }
+});
+
+
 const restartSmartDnsButton = synapse.button({
   context,
   name: "Reset TV Region",
@@ -69,7 +81,11 @@ exec(cmd, (err, stdout, stderr) => {
   };
 
 
+  movieMode.onUpdate(({ state }) => {
   
+    logger.info(state);
+
+  });
 
   lamp.onUpdate(({ state }) => {
   
