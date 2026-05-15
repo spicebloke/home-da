@@ -12,6 +12,8 @@ import { Bathroom } from "./bathroom.mts";
 import { Wongr } from "./wongr.mts";
 import { Energy } from "./energy.mts";
 import { Xanadu } from "./xanadu.mts";
+import { Work } from "./work.mts";
+
 
 type Environments = "development" | "production" | "test";
 
@@ -53,7 +55,8 @@ const HOME_AUTOMATION = CreateApplication({
     Wongr,
     Energy,
     Jardin,
-    Xanadu
+    Xanadu,
+	Work
   },
 });
 
