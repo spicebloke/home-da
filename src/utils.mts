@@ -190,7 +190,7 @@ export async function renderApexToPng(
 
   const arrayBuffer = await response.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
-  const filePath = path.resolve("/root/config/www/" + fileName);
+  const filePath = path.resolve("../../../../config/www/" + fileName);
 
   await fs.promises.writeFile(filePath, buffer);
 
