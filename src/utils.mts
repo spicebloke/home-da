@@ -9,6 +9,9 @@ import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import * as fs from 'fs';
+import path from "path";
+
+
 
 
 dayjs.extend(advancedFormat);
@@ -158,6 +161,40 @@ export function incrementOverTime<T extends number>({
   return () => clearInterval(interval);
 }
 
+
+
+
+
+export async function renderApexToPng(
+  options: any,
+  outputPath: string = "chart.png",
+  width: number = 500,
+  height: number = 200
+) {
+  const response = await fetch("https://quickchart.io/apex-charts/render", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      width,
+      height,
+      config: options,
+    }),
+  });
+
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`QuickChart error: ${response.status} - ${text}`);
+  }
+
+  const arrayBuffer = await response.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
+
+  await fs.promises.writeFile(outputPath, buffer);
+
+  return outputPath;
+}
 
 
 
