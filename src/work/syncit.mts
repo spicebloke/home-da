@@ -2,7 +2,7 @@ import { Database } from "bun:sqlite";
 import { syncInvoices } from "./invoices.mts";
 
 
-export function SyncIt() {
+export async function SyncIt() {
 
 	var ret = "no change"
 const db = new Database(process.env.DB);

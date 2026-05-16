@@ -24,7 +24,7 @@ const restartSmartDnsButton = synapse.button({
     hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Work button 3"});
 
     //await ChartVsPrv();
-   logger.info(SyncIt());
+   logger.info(await SyncIt());
   }
 });
 
