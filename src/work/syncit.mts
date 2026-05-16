@@ -10,9 +10,9 @@ const db = new Database("calendar5.db");
 
 
 
-var ret = db.query(`SELECT max(inv) from invoices ;`).all();
+var ret = db.query(`SELECT max(inv) as invm from invoices ;`).get();
 
-return ret;
+return ret.invm;
 
 
 }
