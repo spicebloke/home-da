@@ -110,9 +110,7 @@ export async function ChartVsPrv(){
 ;
 
 
-  await renderApexToPng(options, "chart9a.png");
-
-  logger.info("Chart saved to:");
+  await renderApexToPng(options, "chart9ab.png");
 
 
 
