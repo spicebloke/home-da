@@ -33,6 +33,9 @@ const restartSmartDnsButton = synapse.button({
 
     logger.info("work ready 1.0");
 
+	logger.info(`Directory name is ${__dirname}`);
+	
+	logger.info(path.resolve("./chart3.png"));
   });
 }
 
