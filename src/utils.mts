@@ -167,7 +167,7 @@ export function incrementOverTime<T extends number>({
 
 export async function renderApexToPng(
   options: any,
-  outputPath: string = "chart.png",
+  fileName: string = "chart.png",
   width: number = 500,
   height: number = 200
 ) {
@@ -190,8 +190,9 @@ export async function renderApexToPng(
 
   const arrayBuffer = await response.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
+  const filePath = path.resolve("/root/config/www/" + fileName);
 
-  await fs.promises.writeFile(outputPath, buffer);
+  await fs.promises.writeFile(filePath, buffer);
 
   return outputPath;
 }

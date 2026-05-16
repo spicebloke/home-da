@@ -131,11 +131,10 @@ const restartSmartDnsButton = synapse.button({
 }
 ;
 
-filePath = path.resolve("./chart9.png");
 
-  await renderApexToPng(options, filePath);
+  await renderApexToPng(options, "chart9.png");
 
-  logger.info("Chart saved to:", filePath);
+  logger.info("Chart saved to:");
 
 
 
