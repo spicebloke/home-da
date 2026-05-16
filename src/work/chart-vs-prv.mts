@@ -157,7 +157,7 @@ const totals2 = sumArrays(cash2.values, bank2.values)
 options.xaxis.categories = totals2
 
 
-  await renderApexToPng(options, "chart2.ong");
+  await renderApexToPng(options, "chart2.png");
 
 
 
