@@ -237,7 +237,7 @@ from (
 
 )`).get();
 
-writeFileWW2(JSON.stringify(ret5.clients),"debtors.json");
+writeFileWWW(JSON.stringify(ret5.clients),"debtors.json");
 
   //await renderApexToPng(options, "chart9ab.png");
 
