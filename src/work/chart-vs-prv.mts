@@ -1,8 +1,10 @@
-
+import { Database } from "bun:sqlite";
 import { renderApexToPng } from ".././utils.mts";
 
 
 export async function ChartVsPrv(){
+	
+	const db = new Database(process.env.DB);
 	
 	const options = 
 {
@@ -110,7 +112,120 @@ export async function ChartVsPrv(){
 ;
 
 
-  await renderApexToPng(options, "chart9ab.png");
+
+
+var ret = db.query(`SELECT pay_year, method, round(sum(amt),0) as amt FROM jobs
+WHERE pay_year >= '2023' and pay_month <= '05'  and iif( upper( substr (desc, 1, 7) ) == 'DEBOURS',1,0) == 0 group by pay_year, method ;`).all();
+
+
+var ret2 = db.query(`SELECT pay_year, method, round(sum(amt),0) as amt FROM jobs
+WHERE pay_year >= '2023' and pay_month == '05'  and iif( upper( substr (desc, 1, 7) ) == 'DEBOURS',1,0) == 0 group by pay_year, method ;`).all();
+
+
+//var ret3 = db.query(`SELECT * FROM jobs
+//WHERE pay_year >= '2026' and pay_month == '05'  order by paid ;`).all();
+//console.log(ret3);
+
+
+function sumArrays(...arrays: number[][]): number[] {
+  return arrays[0].map((_, i) => arrays.reduce((sum, arr) => sum + arr[i], 0));
+}
+
+
+function getSeriesByMethod(data: PaymentRecord[], method: string) {
+  const filtered = data.filter(
+    (record) => record.method.toLowerCase() === method.toLowerCase()
+  );
+  return {
+    labels: filtered.map((r) => r.pay_year),
+    values: filtered.map((r) => r.amt),
+  };
+}
+
+// { labels: ["2023", "2024", "2025"], values: [850, 1270, 892.5] }
+const cash2 = getSeriesByMethod(ret2, "Cash");
+const bank2 = getSeriesByMethod(ret2, "Bank");
+
+
+options.series[1].data = cash2.values
+options.series[0].data = bank2.values
+
+//console.log(options)
+
+const totals2 = sumArrays(cash2.values, bank2.values)
+
+options.xaxis.categories = totals2
+
+
+  await renderApexToPng(options, "chart2.ong");
+
+
+
+
+
+
+const cash = getSeriesByMethod(ret, "Cash");
+const bank = getSeriesByMethod(ret, "Bank");
+
+
+options.series[1].data = cash.values
+options.series[0].data = bank.values
+options.series[1].color = '#F78764'
+
+//console.log(options)
+
+const totals = sumArrays(cash.values, bank.values)
+
+options.xaxis.categories = totals
+
+
+  await renderApexToPng(options, "chart.png");
+
+
+
+
+
+
+
+
+
+var ret4 = db.query(`SELECT strftime('%W', start) as pay_year , 
+strftime('%Y', start) as method,
+sum( dur / 60) as amt
+FROM jobs 
+WHERE start >= '2025-01-01' 
+and strftime('%W', dte) < strftime('%W', date('now')) 
+and strftime('%W', dte) != '00'
+and worker =='Clive'
+group by strftime('%W', start) , strftime('%Y', start) ;`).all();
+
+
+
+const cash4 = getSeriesByMethod(ret4, "2026");
+const bank4 = getSeriesByMethod(ret4, "2025");
+
+options.series[0].data = cash4.values
+options.series[1].data = bank4.values
+options.series[1].color = '#F4D35E'
+
+//options.series[1].type = "line"
+
+options.xaxis.categories = bank4.labels
+options.xaxis.labels.show = false
+options.chart.stacked = false
+options.chart.height = 100
+options.chart.sparkline.enabled = true
+options.dataLabels.enabled = false
+options.grid.padding.left = 0
+options.grid.padding.right = 0
+
+
+  await renderApexToPng(options, "chart3.png", 500,100);
+
+  
+
+
+  //await renderApexToPng(options, "chart9ab.png");
 
 
 

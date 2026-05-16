@@ -23,8 +23,8 @@ const restartSmartDnsButton = synapse.button({
   async press() {
     hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Work button 3"});
 
-    //await ChartVsPrv();
-   logger.info(await SyncIt());
+    await ChartVsPrv();
+   //logger.info(await SyncIt());
   }
 });
 
@@ -43,6 +43,7 @@ const restartSmartDnsButton = synapse.button({
     event_type: "da_syncit",
     async exec() {
       logger.info("did the house fall down?");
+	  logger.info(await SyncIt());
       },
     });
 	
