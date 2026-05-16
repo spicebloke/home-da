@@ -24,7 +24,7 @@ const restartSmartDnsButton = synapse.button({
     hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Work button 3"});
 
     //await ChartVsPrv();
-   logger.info(await SyncIt());
+   //logger.info(await SyncIt());
   }
 });
 
@@ -36,6 +36,15 @@ const restartSmartDnsButton = synapse.button({
     logger.info("work ready 1.0");
 
 	logger.info(`Directory name is ${__dirname}`);
+	
+	
+	hass.socket.subscribe({
+    context,
+    event_type: "da_syncit",
+    async exec() {
+      logger.info("did the house fall down?");
+      },
+    });
 	
 	//logger.info(path.resolve("./chart3.png"));
   });
