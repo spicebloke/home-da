@@ -194,7 +194,7 @@ export async function renderApexToPng(
 
   await fs.promises.writeFile(filePath, buffer);
 
-  return outputPath;
+  return filePath;
 }
 
 
