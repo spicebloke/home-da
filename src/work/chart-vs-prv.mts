@@ -1,5 +1,5 @@
 import { Database } from "bun:sqlite";
-import { renderApexToPng } from ".././utils.mts";
+import { renderApexToPng, writeFileWWW } from ".././utils.mts";
 
 
 export async function ChartVsPrv(){
@@ -223,7 +223,21 @@ options.grid.padding.right = 0
   await renderApexToPng(options, "chart3.png", 500,100);
 
   
+  var ret5 = db.query(`select json_group_object(client, total) as clients
 
+from (
+
+    select client, sum(amt) as total
+
+    from jobs
+
+    where inv like '%0000'
+
+    group by client
+
+)`).get();
+
+writeFileWW2(JSON.stringify(ret5.clients),"debtors.json")
 
   //await renderApexToPng(options, "chart9ab.png");
 
