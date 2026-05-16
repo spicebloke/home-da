@@ -5,7 +5,7 @@ import { Database } from "bun:sqlite";
 export function SyncIt() {
 	
 
-const db = new Database("../../calendar5.db");
+const db = new Database("../calendar5.db");
 
 
 
