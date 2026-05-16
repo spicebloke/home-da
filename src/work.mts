@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { toggleIcons , writeFile, createDelayer } from "./utils.mts";
 import { CronExpression,  TServiceParams } from "@digital-alchemy/core";
 import duration from "dayjs/plugin/duration";
-import ChartVsPrv from "./work/chart-vs-prv.mts"
+import { ChartVsPrv } from "./work/chart-vs-prv.mts"
 
 export function Work({
   automation,
