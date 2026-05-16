@@ -23,7 +23,7 @@ const restartSmartDnsButton = synapse.button({
   context,
   name: "Work button",
   async press() {
-    hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Work button"});
+    hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Work button 2"});
 	
 	
 	const options = 
@@ -131,7 +131,7 @@ const restartSmartDnsButton = synapse.button({
 }
 ;
 
-filePath = path.resolve("./chart.png");
+filePath = path.resolve("./chart9.png");
 
   await renderApexToPng(options, filePath);
 
