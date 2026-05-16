@@ -223,7 +223,17 @@ options.grid.padding.right = 0
   await renderApexToPng(options, "chart3.png", 500,100);
 
   
-  var ret5 = db.query(`select json_group_object(client, total) as clients
+  var ret5 = db.query(`select json_group_array(
+
+    json_object(
+
+        'client', client,
+
+        'total', total
+
+    )
+
+) as clients
 
 from (
 
