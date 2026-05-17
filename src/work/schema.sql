@@ -1,6 +1,6 @@
 
 
-
+/*
 
 CREATE TABLE IF NOT EXISTS invoices (
   inv TEXT PRIMARY KEY,
@@ -20,8 +20,9 @@ CREATE TABLE IF NOT EXISTS clients (
   worker TEXT
 )
 
+*/
 
-
+/*
 create view eventsview as SELECT *, 
 json_extract( substr(description, instr(description, '{')), '$.inv') inv,
 json_extract( substr(description, instr(description, '{')), '$.rate') rate,
@@ -29,11 +30,11 @@ json_extract( substr(description, instr(description, '{')), '$.amt') amt,
 (strftime('%s', end) - strftime('%s', start)) / 60.0  as dur,
 iif( upper( substr(description, 1, 7) ) == 'DEBOURS',1,0) as debours
 from events 
+*/
 
 
 
-
-drop view jobs
+drop view alljobs;
 
 
 create view alljobs as
@@ -63,10 +64,11 @@ SELECT
 FROM eventsview e
 
 LEFT JOIN invoices i
-ON e.inv = i.inv
+ON e.inv = i.inv;
 
 
+drop view jobs;
 
 create view jobs as
 	select * from alljobs
-	where debours == 0
+	where debours == 0;

@@ -6,9 +6,7 @@ export async function ChartVsPrv(){
 	
 	let db = new Database(process.env.DB);
 	
-	db.close();
 	
-    db = new Database(process.env.DB);
 	
 	const options = 
 {

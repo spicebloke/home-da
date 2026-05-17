@@ -5,6 +5,10 @@ import duration from "dayjs/plugin/duration";
 import { ChartVsPrv } from "./work/chart-vs-prv.mts"
 import { SyncIt } from "./work/syncit.mts"
 
+import { Apply } from "./work/schema.mts"
+
+
+
 export function Work({
   automation,
   context,
@@ -23,7 +27,8 @@ const restartSmartDnsButton = synapse.button({
   async press() {
     hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Work button 3"});
 
-    await ChartVsPrv();
+    //await ChartVsPrv();
+	Apply();
    //logger.info(await SyncIt());
   }
 });
