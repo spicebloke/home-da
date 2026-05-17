@@ -19,6 +19,13 @@ export function Work({
   synapse,
 }: TServiceParams) {
 
+	
+	
+	const updateSensor = synapse.binary_sensor({
+  context,
+  name: "Work DB Update",
+  device_class: "update"
+});
 
 
 const restartSmartDnsButton = synapse.button({
@@ -27,19 +34,11 @@ const restartSmartDnsButton = synapse.button({
   async press() {
     hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Work button 3"});
 
-    await ChartVsPrv();
+    //await ChartVsPrv();
 	//Apply();
    //logger.info(await SyncIt());
    
-   hass.socket.onEvent({
-  context,
-  event: "da_syncit",
-  async exec(data) {
-    logger.info(JSON.stringify(event, null, 2));
-    // ... logic
-
-       }
-    });
+   
 	
   }
 });
@@ -60,13 +59,6 @@ const restartSmartDnsButton = synapse.button({
 
 	
 
-	hass.onEvent("dignity_alarm", event => {
-
-logger.info("onevent")
-
-})
-
-	
 	
 	
 	hass.socket.subscribe({
