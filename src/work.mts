@@ -30,6 +30,17 @@ const restartSmartDnsButton = synapse.button({
     await ChartVsPrv();
 	//Apply();
    //logger.info(await SyncIt());
+   
+   hass.socket.onEvent({
+  context,
+  event: "da_syncit",
+  async exec(data) {
+    logger.info("received my event with a payload2!");
+    // ... logic
+
+       }
+    });
+	
   }
 });
 
@@ -47,15 +58,7 @@ const restartSmartDnsButton = synapse.button({
 	
 	console.log("REGISTERING EVENT LISTENER")
 
-	hass.socket.onEvent({
-  context,
-  event: "da_syncit",
-  async exec(data) {
-    logger.info("received my event with a payload2!");
-    // ... logic
-
-       }
-    });
+	
 
 
 	
