@@ -21,12 +21,8 @@ export function Work({
 
 	
 	
-	const updateSensor = synapse.binary_sensor({
-  context,
-  name: "Work DB Update",
-  device_class: "update"
-});
-
+	
+	
 
 const restartSmartDnsButton = synapse.button({
   context,
@@ -44,6 +40,23 @@ const restartSmartDnsButton = synapse.button({
 });
 
 
+const restartButton = synapse.button({
+  context,
+  name: "Update Work to DB",
+  device_class: "update",
+  async press() {
+    logger.info("Update work to db...");
+    // Perform restart logic
+	
+	
+	logger.info(await SyncIt());
+	
+	
+	
+	
+  }
+});
+
 
 
   lifecycle.onReady(() => {
@@ -52,23 +65,9 @@ const restartSmartDnsButton = synapse.button({
 
 	logger.info(`Directory name is ${__dirname}`);
 	
-	
+
 
 	
-	console.log("REGISTERING EVENT LISTENER")
-
-	
-
-	
-	
-	hass.socket.subscribe({
-    context,
-    event_type: "da_syncit",
-    async exec() {
-      logger.info("did the house fall down?");
-	 // logger.info(await SyncIt());
-      },
-    });
 	
 	//logger.info(path.resolve("./chart3.png"));
   });
