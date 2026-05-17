@@ -34,7 +34,7 @@ from events
 
 
 
-drop view alljobs;
+/* drop view alljobs; */
 
 
 create view alljobs as
