@@ -44,6 +44,8 @@ const restartSmartDnsButton = synapse.button({
 	
 	
 
+	
+	console.log("REGISTERING EVENT LISTENER")
 
 	hass.socket.onEvent({
   context,
