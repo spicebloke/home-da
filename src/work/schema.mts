@@ -2,7 +2,7 @@ import { Database } from "bun:sqlite";
 
 import { readFileSync } from "fs"
 
-
+import { join } from "path"
 
 
 export function Apply(){
@@ -19,7 +19,10 @@ try {
 
   // Read the SQL file
 
-  const sql = readFileSync("schema.sql", "utf8")
+
+const sqlPath = join(import.meta.dir, "schema.sql")
+
+const sql = readFileSync(sqlPath, "utf8")
 
   // Run everything in one go
 
