@@ -5,35 +5,6 @@ import crypto from "crypto";
    
 
 
-/*
-
-const db = new Database("calendar5.db");
-
-db.exec(`
-
-
-
-CREATE TABLE IF NOT EXISTS invoices (
-  inv TEXT PRIMARY KEY,
-  amount REAL,
-  method TEXT,
-  paid TEXT,        -- epoch ms
-  worker TEXT,
-  title TEXT,
-  client TEXT,
-  hash TEXT NOT NULL
-);
-`);
-
-
-db.exec(`
-
-CREATE INDEX IF NOT EXISTS idx_invoices_paid ON invoices(paid);
-`);
-
-*/
-
-
 //const ret = db.query(`SELECT * from invoices where paid is null`).all();
 //console.log(ret);
 

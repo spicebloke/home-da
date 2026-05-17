@@ -43,7 +43,7 @@ const restartSmartDnsButton = synapse.button({
     event_type: "da_syncit",
     async exec() {
       logger.info("did the house fall down?");
-	  logger.info(await SyncIt());
+	 // logger.info(await SyncIt());
       },
     });
 	
