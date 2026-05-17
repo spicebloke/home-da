@@ -4,7 +4,11 @@ import { renderApexToPng, writeFileWWW } from ".././utils.mts";
 
 export async function ChartVsPrv(){
 	
-	const db = new Database(process.env.DB);
+	let db = new Database(process.env.DB);
+	
+	db.close();
+	
+    db = new Database(process.env.DB);
 	
 	const options = 
 {
