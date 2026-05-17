@@ -35,7 +35,7 @@ const restartSmartDnsButton = synapse.button({
   context,
   event: "da_syncit",
   async exec(data) {
-    logger.info("received my event with a payload2!");
+    logger.info(JSON.stringify(event, null, 2));
     // ... logic
 
        }
@@ -60,6 +60,11 @@ const restartSmartDnsButton = synapse.button({
 
 	
 
+	hass.onEvent("dignity_alarm", event => {
+
+logger.info("onevent")
+
+})
 
 	
 	
