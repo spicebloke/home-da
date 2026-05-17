@@ -19,7 +19,7 @@ try {
 
   // Read the SQL file
 
-  const sql = readFileSync("./schema.sql", "utf8")
+  const sql = readFileSync("schema.sql", "utf8")
 
   // Run everything in one go
 
