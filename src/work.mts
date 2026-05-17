@@ -51,7 +51,7 @@ const restartButton = synapse.button({
 	
 	logger.info(await SyncIt());
 	
-	
+	await ChartVsPrv();
 	
 	
   }
