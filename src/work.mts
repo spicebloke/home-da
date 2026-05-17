@@ -43,6 +43,14 @@ const restartSmartDnsButton = synapse.button({
 	logger.info(`Directory name is ${__dirname}`);
 	
 	
+	hass.websocket.onEvent("da_syncit", event => {
+
+    logger.info("EVENT RECEIVED")
+
+
+    })
+
+	
 	hass.socket.subscribe({
     context,
     event_type: "da_syncit",
