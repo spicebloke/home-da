@@ -196,7 +196,7 @@ strftime('%Y', start) as method,
 sum( dur / 60) as amt
 FROM jobs 
 WHERE start >= '2025-01-01' 
-and strftime('%W', dte) < strftime('%W', date('now')) 
+and strftime('%W', dte) <= strftime('%W', date('now')) 
 and strftime('%W', dte) != '00'
 and worker =='Clive'
 group by strftime('%W', start) , strftime('%Y', start) ;`).all();

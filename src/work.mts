@@ -3,6 +3,7 @@ import { toggleIcons , writeFile, createDelayer } from "./utils.mts";
 import { CronExpression,  TServiceParams } from "@digital-alchemy/core";
 import duration from "dayjs/plugin/duration";
 import { ChartVsPrv } from "./work/chart-vs-prv.mts"
+import { ChartMowGap } from "./work/chart-mowgap.mts"
 import { SyncIt } from "./work/syncit.mts"
 
 import { Apply } from "./work/schema.mts"
@@ -53,7 +54,7 @@ const restartButton = synapse.button({
 	
 	await ChartVsPrv();
 	
-	
+	await ChartMowGap();
   }
 });
 
