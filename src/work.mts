@@ -52,9 +52,13 @@ const restartButton = synapse.button({
 	
 	logger.info(await SyncIt());
 	
+	await scheduler.sleep({ second: 1 });
+	
 	await ChartVsPrv();
 	
 	await ChartMowGap();
+	
+	hass.call.notify.mobile_app_spicepad( { "title":"Info" , "message": "Work db and charts refreshed"});
   }
 });
 

@@ -9,7 +9,7 @@ export async function SyncIt() {
 const db = new Database(process.env.DB);
 
 
-syncEventsFromFirebase(db, `${process.env.JOBS_URL}?t=${Date.now()}`)
+await syncEventsFromFirebase(db, `${process.env.JOBS_URL}?t=${Date.now()}`)
 
 
 //nvoices update

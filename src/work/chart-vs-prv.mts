@@ -104,10 +104,10 @@ export async function ChartVsPrv(){
     }
   },
 "colors": [
-    '#083D77',
-    '#DA4167',
-    '#F78764',
-    '#F4D35E'
+    '#202940',
+    '#4B4038',
+    '#9A8678',
+    '#CAAA98'
 
   ]
 }
@@ -172,7 +172,7 @@ const bank = getSeriesByMethod(ret, "Bank");
 
 options.series[1].data = cash.values
 options.series[0].data = bank.values
-options.series[1].color = '#F78764'
+
 
 //console.log(options)
 
@@ -208,7 +208,7 @@ const bank4 = getSeriesByMethod(ret4, "2025");
 
 options.series[0].data = cash4.values
 options.series[1].data = bank4.values
-options.series[1].color = '#F4D35E'
+
 
 //options.series[1].type = "line"
 
@@ -220,6 +220,7 @@ options.chart.sparkline.enabled = true
 options.dataLabels.enabled = false
 options.grid.padding.left = 0
 options.grid.padding.right = 0
+options.series[1].color = options.colors[2]
 
 
   await renderApexToPng(options, "chart3.png", 500,100);
