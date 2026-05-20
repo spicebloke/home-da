@@ -230,25 +230,18 @@ options.series[1].color = options.colors[2]
 
     json_object(
 
-        'client', client,
-
-        'total', total
+        'client', client, 'amt1', amt1, 'amt2', amt2
 
     )
 
 ) as clients
 
-from (
-
-    select client, sum(amt) as total
-
+from ( select client, 
+sum(iif(inv like '%0000', amt, 0)) as amt1,
+sum(iif(inv not like '%0000', amt, 0)) as amt2
     from jobs
-
-    where inv like '%0000'
-
-    group by client
-
-)`).get();
+  where paid is null
+group by client)`).get();
 
 writeFileWWW(JSON.stringify(ret5.clients),"debtors.json");
 
