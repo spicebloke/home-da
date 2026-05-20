@@ -222,6 +222,22 @@ options.grid.padding.left = 0
 options.grid.padding.right = 0
 options.series[1].color = options.colors[2]
 
+options.annotations = {
+
+  yaxis: [
+
+    {
+
+      y: 7,
+
+      borderColor: "#ff0000",
+
+    },
+
+  ],
+
+};
+
 
   await renderApexToPng(options, "chart3.png", 500,100);
 
