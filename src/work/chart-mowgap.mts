@@ -172,7 +172,7 @@ const options = {
     )
 
 ) as clients
-  Select client, round(julianday('now') - julianday(dte)) as day FROM jobs
+from  Select client, round(julianday('now') - julianday(dte)) as day FROM jobs
     WHERE dte >= '2026-03-01'
       AND instr(upper(description), 'WEED') != 0
 Order by dte desc limit 10
