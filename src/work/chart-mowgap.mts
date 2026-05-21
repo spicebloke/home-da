@@ -162,6 +162,25 @@ const options = {
 
   
 
+  
+  var ret5 = db.query(`select json_group_array(
+
+    json_object(
+
+        'desc', client, 'amt1', day
+
+    )
+
+) as clients
+  Select client, round(julianday('now') - julianday(dte)) as day FROM jobs
+    WHERE dte >= '2026-03-01'
+      AND instr(upper(description), 'WEED') != 0
+Order by dte desc limit 10
+)`).get();
+
+writeFileWWW(JSON.stringify(ret5.clients),"weeds.json");
+
+  
 
 }
 
