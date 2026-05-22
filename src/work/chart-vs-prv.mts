@@ -206,6 +206,9 @@ group by strftime('%W', start) , strftime('%Y', start) ;`).all();
 const cash4 = getSeriesByMethod(ret4, "2026");
 const bank4 = getSeriesByMethod(ret4, "2025");
 
+const totals4 = sumArrays(cash4.values, bank4.values)
+
+
 options.series[0].data = cash4.values
 options.series[1].data = bank4.values
 
@@ -239,7 +242,7 @@ options.annotations = {
 };
 
 options.subtitle =  {
-  text: "30 / 24",
+  text: totals4[0] + '/' + totals4[1],
   align: "right",
   offsetY: 0,
   style: {
