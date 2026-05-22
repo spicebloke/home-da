@@ -121,7 +121,11 @@ const options = {
       barHeight: '60%'
     }
   },
-
+  
+  dataLabels: {
+    enabled: true
+  },
+  
   series,
 
   xaxis: {
@@ -158,7 +162,7 @@ const options = {
 
 
 
-  await renderApexToPng(options, "chart4.png", 800,400);
+  await renderApexToPng(options, "chart4.png", 795,379);
 
   
 
