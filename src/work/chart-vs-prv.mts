@@ -32,6 +32,21 @@ export async function ChartVsPrv(){
 
   },
 
+  "subtitle": {
+
+  "text": "Target 30%",
+
+  "align": "right",
+
+  "offsetY": 0,
+
+  "style": {
+
+    "fontSize": "10px"
+
+  }
+
+},
 
   "theme": {
     "mode": "light"
