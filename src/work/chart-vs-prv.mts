@@ -13,7 +13,7 @@ export async function ChartVsPrv(){
   "chart": {
     "type": "line",
     "stacked": true,
-    "background": "#ebebd3",
+    "background": "#F2F0EF",
     "offsetY": -10,
     "height": 200,
     "toolbar": { "show": false },
@@ -104,9 +104,9 @@ export async function ChartVsPrv(){
     }
   },
 "colors": [
-    '#202940',
-    '#4B4038',
-    '#9A8678',
+    '#D6336C',
+    '#FF4081',
+    '#FFB6C1',
     '#CAAA98'
 
   ]

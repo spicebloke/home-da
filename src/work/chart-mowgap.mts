@@ -123,7 +123,7 @@ const options = {
   },
   
   dataLabels: {
-    enabled: true,
+    enabled: false,
 	  formatter: (value, opts) => {
 
     const point = opts.w.config.series[opts.seriesIndex]
