@@ -252,7 +252,7 @@ options.annotations = {
 };
 
 options.subtitle =  {
-  text: totals4['2026'] + '/' + totals4['2025'],
+  text: totals4.2026 + '/' + totals4.2025,
   align: "right",
   offsetY: 0,
   style: {
