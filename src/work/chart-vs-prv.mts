@@ -214,8 +214,10 @@ for (const row of ret4) {
 
   totals4[row.pay_year] += row.amt
 
-}
+};
 
+const totals5 = totals4["2026"];
+const totals6 = totals4["2025"];
 //console.log(totals)
 
 
@@ -252,7 +254,7 @@ options.annotations = {
 };
 
 options.subtitle =  {
-  text: totals4.2026 + '/' + totals4.2025,
+  text: totals5 + '/' + totals6,
   align: "right",
   offsetY: 0,
   style: {
