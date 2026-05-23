@@ -192,7 +192,7 @@ options.xaxis.categories = totals
 
 
 var ret4 = db.query(`SELECT strftime('%W', start) as pay_year , 
-strftime('%Y', start) as method,
+"Y" + strftime('%Y', start) as method,
 sum( dur / 60) as amt
 FROM jobs 
 WHERE start >= '2025-01-01' 
@@ -203,22 +203,16 @@ group by strftime('%W', start) , strftime('%Y', start) ;`).all();
 
 
 
-const cash4 = getSeriesByMethod(ret4, "2026");
-const bank4 = getSeriesByMethod(ret4, "2025");
+const cash4 = getSeriesByMethod(ret4, "Y2026");
+const bank4 = getSeriesByMethod(ret4, "Y2025");
 
 const totals4: Record<string, number> = {}
 
 for (const row of ret4) {
-
   totals4[row.pay_year] ??= 0
-
   totals4[row.pay_year] += row.amt
-
 };
 
-const totals5 = totals4["2026"];
-const totals6 = totals4["2025"];
-//console.log(totals)
 
 
 options.series[0].data = cash4.values
@@ -254,7 +248,7 @@ options.annotations = {
 };
 
 options.subtitle =  {
-  text: totals5 + '/' + totals6,
+  text: totals4.Y2026,
   align: "right",
   offsetY: 0,
   style: {
