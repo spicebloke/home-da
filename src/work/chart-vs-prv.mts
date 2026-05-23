@@ -210,9 +210,9 @@ const totals4: Record<string, number> = {}
 
 for (const row of ret4) {
 
-  totals[row.pay_year] ??= 0
+  totals4[row.pay_year] ??= 0
 
-  totals[row.pay_year] += row.amt
+  totals4[row.pay_year] += row.amt
 
 }
 
