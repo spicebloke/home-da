@@ -123,7 +123,12 @@ const options = {
   },
   
   dataLabels: {
-    enabled: true
+    enabled: true,
+	formatter: (value) => {
+
+      return Math.round(value / 86400000).toString()
+
+    }
   },
   
   series,

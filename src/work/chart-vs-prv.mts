@@ -206,7 +206,17 @@ group by strftime('%W', start) , strftime('%Y', start) ;`).all();
 const cash4 = getSeriesByMethod(ret4, "2026");
 const bank4 = getSeriesByMethod(ret4, "2025");
 
-const totals4 = sumArrays(cash4.values, bank4.values)
+const totals4: Record<string, number> = {}
+
+for (const row of ret4) {
+
+  totals[row.pay_year] ??= 0
+
+  totals[row.pay_year] += row.amt
+
+}
+
+//console.log(totals)
 
 
 options.series[0].data = cash4.values
@@ -242,7 +252,7 @@ options.annotations = {
 };
 
 options.subtitle =  {
-  text: totals4[0] + '/' + totals4[1],
+  text: totals4['2026'] + '/' + totals4['2025'],
   align: "right",
   offsetY: 0,
   style: {
