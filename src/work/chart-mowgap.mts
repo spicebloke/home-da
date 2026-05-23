@@ -124,8 +124,19 @@ const options = {
   
   dataLabels: {
     enabled: true,
-	  formatter: (value) => {
-      return value + "ppp"
+	  formatter: (value, opts) => {
+
+    const point = opts.w.config.series[opts.seriesIndex]
+
+      .data[opts.dataPointIndex]
+
+    const start = point.y[0]
+
+    const end = point.y[1]
+
+    const days = Math.round((end - start) / 86400000)
+
+    return days.toString()
     }
   },
   

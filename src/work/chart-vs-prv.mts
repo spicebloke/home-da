@@ -210,7 +210,7 @@ const totals4: Record<string, number> = {}
 
 for (const row of ret4) {
   totals4[row.method] ??= 0
-  totals4[row.method] += row.amt
+  totals4[row.method] += Math.round(row.amt)
 };
 
 
@@ -248,7 +248,7 @@ options.annotations = {
 };
 
 options.subtitle =  {
-  text: totals4['2026'],
+  text: totals4['2026'] + '/' + totals4['2025'],
   align: "right",
   offsetY: 0,
   style: {
