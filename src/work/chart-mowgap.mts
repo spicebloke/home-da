@@ -176,7 +176,7 @@ const options = {
 
 
 
-  await renderApexToPng(options, "chart4.png", 795,379);
+  await renderApexToPng(options, "chart4.png", 600,200);
 
   
 

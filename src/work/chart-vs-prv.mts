@@ -159,7 +159,7 @@ const totals2 = sumArrays(cash2.values, bank2.values)
 options.xaxis.categories = totals2
 
 
-  await renderApexToPng(options, "chart2.png");
+  await renderApexToPng(options, "chart2.png", 400,200);
 
 
 
@@ -181,7 +181,7 @@ const totals = sumArrays(cash.values, bank.values)
 options.xaxis.categories = totals
 
 
-  await renderApexToPng(options, "chart.png");
+  await renderApexToPng(options, "chart.png", 400,200);
 
 
 
@@ -252,12 +252,12 @@ options.subtitle =  {
   align: "right",
   offsetY: 0,
   style: {
-    fontSize: "24px"
+    fontSize: "14px"
   }
 };
 
 
-  await renderApexToPng(options, "chart3.png", 500,100);
+  await renderApexToPng(options, "chart3.png", 600,100);
 
   
   var ret5 = db.query(`select json_group_array(
